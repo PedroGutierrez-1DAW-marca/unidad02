@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Destripando Firefox OS: ¿Cómo es la arquitectura del sistema?</title>
+	<style>
+		body{
+			font-family: helvetica;
+		}
+		h1, h2, h3{
+			color: #2486A6;
+		}
+		ul{
+			padding-left: 30px;
+		}
+		.indice li{
+			color: #2486A6;
+		}
+		.indice li a{
+			color: #385770;
+		}
+		a{
+			color: #457AA5;
+			text-decoration: none;
+		}
+		a:hover{
+			text-decoration: underline;
+		}
+		.contenido{
+			position: relative;
+			margin: 40px auto;
+			width: 700px;
+			padding-right: 300px;
+			font-size: 18px;
+		}
+		.indice{
+			position: fixed;
+			font-size: 16px;
+			top: 0px;
+			bottom: 0px;
+			left: 50%;
+			margin-left: 200px;
+			padding: 40px 0px 40px 20px;
+			width: 280px;
+		}
+	</style>
+</head>
+<body>
+	<div class="contenido">
+		<div class="indice">
+			<ul>
+				<li><a href="#Destripando Firefox OS">Destripando Firefox OS: ¿Cómo es la arquitectura del sistema?</a></li>
+				<ul>
+					<ul>
+						<li><a href="#Gonk">Gonk</a></li>
+						<li><a href="#Gecko">Gecko</a></li>
+						<li><a href="#Gaia">Gaia</a></li>
+					</ul>
+					<li><a href="#Arquitectura de los procesos">Arquitectura de los procesos (alto nivel)</a></li>
+					<ul>
+						<li><a href="#Rild">Rild</a></li>
+						<li><a href="#MediaServer">MediaServer</a></li>
+						<li><a href="#Otros procesos importantes">Otros procesos importantes</a></li>
+					</ul>
+					<li><a href="#Procesos de la capa Gecko">Procesos de la capa Gecko</a></li>
+					<ul>
+						<li><a href="#Procesos de eventos de entrada">Procesos de eventos de entrada</a></li>
+						<li><a href="#Gráficos">Gráficos</a></li>
+						<li><a href="#Capa de abstracción de hardware">Capa de abstracción de hardware</a></li>
+						<li><a href="#Conexiones de red">Conexiones de red</a></li>
+					</ul>
+					<li><a href="#Resumen">Resumen</a></li>
+				</ul>
+			</ul>
+		</div>
+
+		<h1 id='Destripando Firefox OS'>Destripando Firefox OS: ¿Cómo es la arquitectura del sistema?</h1>
+
+		<p>
+			<a href="http://www.genbetadev.com/desarrollo-aplicaciones-moviles/firefox-os-nos-lo-pone-facilisimo-a-los-desarrolladores">Firefox OS</a> es un proyecto que nos ha dado mucho que hablar los últimos días, con el lanzamiento de <a href="http://www.genbeta.com/movil/mozilla-ya-tiene-disponible-el-telefono-con-la-version-previa-para-desarrolladores-de-firefox-os">los primeros dispositivos</a> con el sistema (para desarrolladores) y es el momento de analizar la arquitectura de <strong>Firefox OS</strong> (con sus capas y sus funciones, desde el nivel más bajo hasta la interfaz).
+		</p>
+		<p>
+			Lo primero de todo son los términos, los más importantes son <strong>Gonk</strong> (la capa de más bajo nivel, formada por el <strong>kernel Linux</strong> y lo necesario para que funcione el dispositivo), <strong>Gecko</strong> (más que conocido, el motor de Firefox y como no de su SO móvil, encargado de ejecutar <span class="caps">HTML</span>, <span class="caps">CSS</span> y JavaScript) y por último <strong>Gaia</strong> (la interfaz como tal, escrita con estándares web y ejecutándose sobre Gecko, incorpora todas las funciones básicas del teléfono).
+		</p>
+
+
+		<h3 id='Gonk'>Gonk</h3>
+
+		<p>
+			<strong>Gonk</strong> son las entrañas del sistema operativo (o mejor dicho, el propio sistema operativo, una especie de Linux <em>destilado</em>), es el conjunto de todas las funciones que tiene que tener el teléfono, que consiste en el propio núcleo (obviamente descendiente del Linux kernel y con trazos muy similares al de Android, aunque teóricamente no deriva de el, este es más puro) y por otro lado incorpora la capa de abstracción de hardware (<span class="caps">HAL</span>).
+		</p>
+
+		<p>
+			Está construido usando el mayor número de librerías de código abierto (por ejemplo <em>libusb</em> o <em>bluez</em>, ambas usadas comúnmente en Linux) y además comparte software con Android para poner en marcha ciertas funciones como el <span class="caps">GPS</span> y la cámara.
+		</p>
+
+		<p>
+			La capa siguiente, <strong>Gecko</strong>, es el motor de todo el “sistema operativo”, pero realmente el sistema en <strong>Gonk</strong>, actuando como cualquier otro sistema donde se ejecuta Firefox, lo que garantiza la total compatibilidad con cualquier plataforma (excluyendo las funciones especificas del móvil, como vibración, estado de la batería, Wifi…).
+		</p>
+
+		<h3 id='Gecko'>Gecko</h3>
+
+		<p>
+			ste es el motor de <strong>Firefox OS</strong>, el encargado de ejecutar como un campeón HTML5, CSS3 y JavaScript, pero con toda la multitud de <em><span class="caps">API</span>s</em> que nos ha traído HTML5 (que comúnmente se suele olvidar que HTML5 es más las <em><span class="caps">API</span>s</em> que la sintaxis: <code>&lt;nav&gt;&lt;/nav&gt;</code>, <code>&lt;article&gt;</code> y demás) y se asegura con el uso de este motor que cualquier tecnología usada en el escritorio se podrá usar en este sistema, como el motor de gráficos basado en <strong>OpenGL ES 2.0</strong>, el motor de diseño o la máquina virtual de JavaScript.
+		</p>
+
+		<h3 id='Gaia'>Gaia</h3>
+
+		<p>
+			Esta es la última de las tres grandes capas de <strong>Firefox OS</strong>, esta es la encargada de la interfaz, que se encarga del propio menú y <em>home</em> y de las funciones básicas (<em><span class="caps">SMS</span></em>, teléfono…) del sistema y también es la capa encargada de poner en marcha las <em><span class="caps">APP</span>s</em> presentes en el sistema.
+		</p>
+
+		<p>
+			Esta capa está construida totalmente con tecnologías web y se comunica con el sistema gracias a las <em><span class="caps">API</span>s</em> presentes, tanto las estándares de HTML5 como algunas propias del sistema, que no son abarcadas por los estándares.
+		</p>
+
+		<h2 id='Arquitectura de los procesos'>Arquitectura de los procesos (alto nivel)</h2>
+
+		<p>
+			El centro neurálgico del sistema es <strong>b2g</strong> (Boot to Gecko), que tiene privilegios elevados y total acceso al hardware, cumpliendo el objetivo de intercomunicar por ejemplo el módem, la pantalla (como interfaz táctil), <span class="caps">GPS</span> y todo lo relacionado con el hardware. Este proceso se ejecuta sobre la capa <strong>Gecko</strong>, por lo que no interactúa directamente con el hardware y lo hace mediante el <em>Gecko <span class="caps">BDPI</span></em>, un sistema de mensajes entre el núcleo y el hardware con la capa del Gecko.
+		</p>
+
+		<h3 id='Rild'>Rild</h3>
+	
+		<p>
+			Este es el proceso que comunica todo el sistema de módem (telefonía), implementando la <em>Radio Interface Layer</em> (<span class="caps">RIL</span>). Esta pieza no es común, ya que la suministra el proveedor del hardware específico, pero debe actuar de igual forma sea del proveedor que sea.
+		</p>
+
+		<p>
+			Junto a <strong>Rild</strong> está el proceso <strong>Rildproxy</strong>, que es el canal entre <strong>Rild</strong> y <strong>b2g</strong>.
+		</p>
+
+		<h3 id='MediaServer'>MediaServer</h3>
+
+		<p>
+			El proceso <strong>MediaServer</strong> controla la reproducción del audio y el vídeo e interactúa con <strong>Gecko</strong>, que realmente es el encargado de decodificar el audio y vídeo (<span class="caps">OGG</span> Vorbis audio, <span class="caps">OGG</span> Theora vídeo y WebM vídeo) y posteriormente es enviado a este proceso para ejecutarlo. Aunque también hay otro proceso importante, es el <strong>libstagefright</strong>, que se encarga de decodificar los contenidos multimedia con codecs propietario.
+		</p>
+
+		<h3 id='Otros procesos importantes'>Otros procesos importantes</h3>
+
+		<p>
+			Hay una serie más de procesos indispensables para el sistema, sin incluir los que ejecuta la capa Gecko, como son los siguientes:
+		</p>
+
+		<ul>
+			<li>
+				<strong>Netd</strong>: este proceso se encarga de la configuración de las interfaces de red.
+			</li>
+			<li>
+				<strong>wpa_supplicant</strong>: es el proceso estándar de Linux usado para la comunicación con puntos de acceso Wifi (se ejecuta como un servicio que está siempre a la escucha).
+			</li>
+			<li>
+				<strong>dbus-daemon</strong>: es el sistema de mensajes usado para la comunicación bluetooth.
+			</li>
+		</ul>
+
+		<h2 id='Procesos de la capa Gecko'>Procesos de la capa Gecko</h2>
+
+		<p>
+			<strong>Gecko</strong>, es totalmente el mismo motor del navegador de escritorio como el de <strong>Firefox OS</strong> (sin incluir alguna <em><span class="caps">API</span></em> puntual), por lo que más o menos tiene los mismos procesos que el navegador que puede que estés usando.
+		</p>
+
+		<h3 id='Procesos de eventos de entrada'>Procesos de eventos de entrada</h3>
+
+		<p>
+			Aquí entra el uso de todas las interfaces que usamos para comunicarnos con el teléfono, como la pantalla táctil o los botones, que es controlado con <strong>nsIAppShell</strong> (desde <strong>Gonk</strong>) y <strong>Gecko</strong> genera los eventos que pueden ser desechados (porque no se usen en una situación como sería tocar la pantalla al estar bloqueado) o se envía a las aplicaciones web como eventos <span class="caps">DOM</span> para ser procesados.
+		</p>
+
+		<h3 id='Gráficos'>Gráficos</h3>
+
+		<p>
+			Desde el más bajo nivel <strong>Gonk</strong> mediante <strong><span class="caps">NSW</span>indow</strong> ejecuta <strong>OpenGL ES 2.0</strong>, que es usado por <strong>Gecko</strong> para dibujar contextos GL (en resumidas cuentas crear gráficos espectaculares si se desea y con tecnología web).
+		</p>
+
+		<h3 id='Capa de abstracción de hardware'>Capa de abstracción de hardware</h3>
+
+		<p>
+			Esta es una capa de abstracción, que no se interactúa con ella con JavaScript directamente, pasa por una <span class="caps">API</span> y que nos permite interactuar con el hardware de una manera más “común”, permitiendonos usar <strong>C++</strong> para estas interacciones (como podría ser la vibración o el flash).
+		</p>
+
+		<h3 id='Conexiones de red'>Conexiones de red</h3>
+
+		<p>
+			En este apartado entran los procesos encargados de manejar el Wifi, los servicios (cliente) de <span class="caps">DHCP</span> y las configuraciones de las conexiones de red (3g y Wifi).
+		</p>
+
+		<p>
+			Para empezar, como hemos comentado todo el trabajo sucio relacionado con el Wifi lo hace el proceso <strong>wpa_supplicant</strong>, que nos permite comunicarnos con el mediante dos <span class="caps">API</span>s distintas, primero tenemos <strong>DOMWifiManager</strong> que nos permite comunicarnos con contenido web y después <strong>WifiWorker</strong> que nos permite comunicar con la interfaz de red para poder informarnos de su estado, por ejemplo.
+		</p>
+
+		<p>
+			El sistema <strong><span class="caps">DHCP</span></strong> (Y <strong><span class="caps">DNS</span></strong>) es controlado por el proceso <strong>dhcpcd</strong>, típico en Linux, pero tiene un pequeño fallo: cada vez que se conecta a una nueva interfaz toca reiniciar el cliente y reconfigurarlo, en lugar de hacerlo sobre la marcha.
+		</p>
+
+		<h2 id='Resumen'>Resumen</h2>
+
+		<p>
+			La arquitectura de este sistema se podría decir que es bastante simple en comparación con las demás arquitecturas móviles, ya que solo incorpora el kernel, el motor del sistema (que básicamente es un navegador) y la interfaz.
+		</p>
+
+		<p>
+			¿Qué podemos deducir de todo esto?: que este sistema tiene lo básico para que <strong>Gecko</strong> funcione de maravilla, sin miles de capas, ni servicios, ni máquinas virtuales ni nada, lo básico, lo que normalmente encontramos para acceder a Facebook o a Evernote, por ejemplo, pero sin comernos todo un sistema complejo y basto, lo que es un gran punto a favor para la plataforma (que apunta ser <em>low cost</em> pero con gran potencial y facilidades a la hora de desarrollar, <a href="http://www.genbetadev.com/desarrollo-aplicaciones-moviles/firefox-os-nos-lo-pone-facilisimo-a-los-desarrolladores">como comentamos anteriormente</a>)
+		</p>
+
+		<p>
+			<strong>Más información</strong> | <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Firefox_OS/Architecture">Firefox OS – Arquitectura</a>
+			<br>
+			<strong>En Genbeta Dev</strong>  | <a href="http://www.genbetadev.com/desarrollo-aplicaciones-moviles/firefox-os-nos-lo-pone-facilisimo-a-los-desarrolladores">Firefox OS: nos lo pone facilísimo a los desarrolladores</a>
+		</p>
+	</div>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!--
+html>(head>(title>{Título de prueba})+meta[charset=UTF-8])+body>(header>img[src='log.png']+nav>ul*2>li*4>{Menú $})+article>(h1>{Título})+(p*3>{Lorem Ipsum y demás})+((h2.deco>{Título pequeño})+p*2>{Lorem ipsum})*4+hr+ol>li*3>{Número $}
+-->
+<html>
+<head>
+	<title>Título de prueba</title>
+	<meta charset="UTF-8">
+</head>
+<body>
+	<header>
+		<img src="log.png" alt="">
+		<nav>
+			<ol>
+				<li>Menú 1</li>
+				<li>Menú 2</li>
+				<li>Menú 3</li>
+				<li>Menú 4</li>
+			</ol>
+			<ul>
+				<li>Menú 1</li>
+				<li>Menú 2</li>
+				<li>Menú 3</li>
+				<li>Menú 4</li>
+			</ul>
+			<ol>
+				<li>Menú 1</li>
+				<li>Menú 2</li>
+				<li>Menú 3</li>
+				<li>Menú 4</li>
+			</ol>
+			<ul>
+				<li>Menú 1</li>
+				<li>Menú 2</li>
+				<li>Menú 3</li>
+				<li>Menú 4</li>
+			</ul>
+		</nav>
+	</header>
+	<article>
+		<h1>Título</h1>
+		<p>Lorem Ipsum y demás</p>
+		<p>Lorem Ipsum y demás</p>
+		<p>Lorem Ipsum y demás</p>
+		<h2 class="deco">Título pequeño</h2>
+		<p>Lorem ipsum</p>
+		<p>Lorem ipsum</p>
+		<h2 class="deco">Título pequeño</h2>
+		<p>Lorem ipsum</p>
+		<p>Lorem ipsum</p>
+		<h2 class="deco">Título pequeño</h2>
+		<p>Lorem ipsum</p>
+		<p>Lorem ipsum</p>
+		<h2 class="deco">Título pequeño</h2>
+		<p>Lorem ipsum</p>
+		<p>Lorem ipsum</p>
+		<hr>
+		<ol>
+			<li>Número 1</li>
+			<li>Número 2</li>
+			<li>Número 3</li>
+		</ol>
+		<pre>Algo con algo de algo</pre>
+	</article>
+	<aside>
+		<dl>
+			<dt>Algo</dt>
+			<dd>Definición de algo</dd>
+			<dt>Algo</dt>
+			<dd>Definición de algo</dd>
+		</dl>
+	</aside>
+</body>
+</html>
+
+
+
+<pre>
+package katas;
+import java.util.Date;
+
+public class Olimpiadas_rusas {
+	static String r="";
+	static int i;
+	static Date time;
+	public static void main(String[] args) {
+		time = new Date();
+		olimpiadasRusas(5);
+		olimpiadasRusas(10);
+		olimpiadasRusas(11);
+		olimpiadasRusas(206788);
+		System.out.println("Tiempo: " + ((new Date()).getTime() - time.getTime()) + "ms");
+	}
+	public static void olimpiadasRusas(int n){
+		boolean f = true;
+		for(;f;i++){
+			if(r.length() > n){
+				f = false;
+				i--;
+			}else
+				r += i;
+		}
+		System.out.println(r.charAt(n));
+	}
+}
+</pre>
