@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<style type="text/css">
+			body{
+				font-family: Arial;
+				font-size: 14px;
+				background-color:#0099EE;
+				color:#101050;
+				width: 800px;
+				margin: 30px auto;
+			}
+			table, td{
+				border: 1px solid white;
+			}
+			table{
+				width:100%;
+			}
+			a{
+				color:lightblue;
+			}
+		</style>
+	</head>
+<body>
+	<h1>TABLAS</h1>
+	<hr>
+
+	<h2>1</h2>
+	<table style="width:auto">
+		<tr>
+			<td>Celda Simples</td>
+		</tr>
+	</table>
+
+	<h2>2</h2>
+	<table>
+		<tr>
+			<td>Ancho 100%</td>
+		</tr>
+	</table>
+
+	<h2>3</h2>
+	<table style="height:130px">
+		<tr>
+			<td>Ancho 100% y alto 130px</td>
+		</tr>
+	</table>
+
+	<h2>4</h2>
+	<table>
+		<tr>
+			<td style="width:30%">Ancho 30%</td>
+			<td style="width:70%">Ancho 70%</td>
+		</tr>
+	</table>
+
+	<h2>5</h2>
+	<table>
+		<tr>
+			<td style="width:30%">Ancho 30%</td>
+			<td>Otra celda</td>
+		</tr>
+		<tr>
+			<td>Ancho 30%</td>
+			<td>Otra celda</td>
+		</tr>
+	</table>
+
+	<h2>6</h2>
+	<h3>Usando Cellpadding</h3>
+	<table cellpadding="20">
+		<tr>
+			<td>20px de padding</td>
+			<td>Otra celda</td>
+		</tr>
+		<tr>
+			<td>Otra celda</td>
+			<td>Otra celda</td>
+		</tr>
+	</table>
+
+	<h3>Usando padding</h3>
+	<table>
+		<tr>
+			<td style="padding:20px">20px de padding</td>
+			<td>Otra celda</td>
+		</tr>
+		<tr>
+			<td>Otra celda</td>
+			<td>Otra celda</td>
+		</tr>
+	</table>
+
+	<h2>7</h2>
+	<h3>Usando Cellspacing</h3>
+	<table cellspacing="20">
+		<tr>
+			<td>20px de espacio entre bordes</td>
+			<td>Otra celda</td>
+		</tr>
+		<tr>
+			<td>Otra celda</td>
+			<td>Otra celda</td>
+		</tr>
+	</table>
+
+	<h3>Usando estilo border-spacing</h3>
+	<table style="border-spacing: 20px">
+		<tr>
+			<td>20px de espacio entre bordes</td>
+			<td>Otra celda</td>
+		</tr>
+		<tr>
+			<td>Otra celda</td>
+			<td>Otra celda</td>
+		</tr>
+	</table>
+
+	<h2>8</h2>
+	<table cellspacing="20" cellpadding="20">
+		<tr>
+			<td>
+				20px de espacio entre bordes
+				<br>
+				20px de espacio entre contenido
+			</td>
+			<td>Otra celda</td>
+		</tr>
+		<tr>
+			<td>Otra celda</td>
+			<td>Otra celda</td>
+		</tr>
+	</table>
+
+	<h2>9</h2>
+	<table cellspacing="20" cellpadding="20" style='border:2px solid green'>
+		<tr>
+			<td>
+				20px de espacio entre bordes
+				<br>
+				20px de espacio entre contenido
+				<br>
+				Color verde en el borde de la tabla
+			</td>
+			<td>Otra celda</td>
+		</tr>
+		<tr>
+			<td>Otra celda</td>
+			<td>Otra celda</td>
+		</tr>
+	</table>
+
+	<h2>10</h2>
+	<table cellspacing="20" cellpadding="20" style='background: gray'>
+		<tr>
+			<td>
+				20px de espacio entre bordes
+				<br>
+				20px de espacio entre contenido
+				<br>
+				Fondo gris
+			</td>
+			<td>Otra celda</td>
+		</tr>
+		<tr>
+			<td>Otra celda</td>
+			<td>Otra celda</td>
+		</tr>
+	</table>
+
+	<h2>11</h2>
+	<table cellspacing="20" cellpadding="20" style='background: gray'>
+		<tr>
+			<td style='background: #EA9624'>
+				20px de espacio entre bordes
+				<br>
+				20px de espacio entre contenido
+				<br>
+				Fondo naranja
+			</td>
+			<td>Otra celda</td>
+		</tr>
+		<tr>
+			<td style='background: #EA9624'>Fondo naranja</td>
+			<td style='background: #FFD900'>Fondo naranja claro</td>
+		</tr>
+	</table>
+
+	<h2>12</h2>
+	<h3>Alineaciones</h3>
+	<h4>Usando atributos</h4>
+	<table>
+		<tr>
+			<td valign="top" align="left" height="40px">Texto</td>
+			<td valign="top" align="center">Texto</td>
+			<td valign="top" align="right">Texto</td>
+		</tr>
+		<tr>
+			<td valign="middle" align="left" height="40px">Texto</td>
+			<td valign="middle" align="center">Texto</td>
+			<td valign="middle" align="right">Texto</td>
+		</tr>
+		<tr>
+			<td valign="bottom" align="left" height="40px">Texto</td>
+			<td valign="bottom" align="center">Texto</td>
+			<td valign="bottom" align="right">Texto</td>
+		</tr>
+	</table>
+
+	<h4>Usando estilos</h4>
+	<table>
+		<tr>
+			<td style="vertical-align: top; text-align: left; height: 40px;">Texto</td>
+			<td style="vertical-align: top; text-align: center;">Texto</td>
+			<td style="vertical-align: top; text-align: right;">Texto</td>
+		</tr>
+		<tr>
+			<td style="vertical-align: middle; text-align: left; height: 40px;">Texto</td>
+			<td style="vertical-align: middle; text-align: center;">Texto</td>
+			<td style="vertical-align: middle; text-align: right;">Texto</td>
+		</tr>
+		<tr>
+			<td style="vertical-align:bottom; text-align: left; height: 40px;">Texto</td>
+			<td style="vertical-align:bottom; text-align: center;">Texto</td>
+			<td style="vertical-align:bottom; text-align: right;">Texto</td>
+		</tr>
+	</table>
+
+	<h2>13</h2>
+	<table>
+		<caption>Título de la tabla</caption>
+		<tr style="background: gray;">
+			<th>Cabecera</th>
+			<th>Cabecera</th>
+		</tr>
+		<tr>
+			<td>Texto</td>
+			<td>Texto</td>
+		</tr>
+		<tr>
+			<td>Texto</td>
+			<td>Texto</td>
+		</tr>
+		<tr>
+			<td>Texto</td>
+			<td>Texto</td>
+		</tr>
+	</table>
+
+	<hr>
+
+	<h1>Tablas irregulares</h1>
+
+	<h2>14</h2>
+	<h3>Sin colspan</h3>
+	<table>
+		<tr>
+			<td style="background: #fff">Celda 1</td>
+			<td style="background: #F7B937">Celda 2</td>
+		</tr>
+		<tr>
+			<td>Celda 3</td>
+			<td>Celda 4</td>
+			<td>Celda 5</td>
+		</tr>
+	</table>
+
+	<h2>15</h2>
+	<h3>Con colspan</h3>
+	<table>
+		<tr>
+			<td style="background: #fff">Celda 1</td>
+			<td style="background: #F7B937" colspan="2">Celda 2</td>
+		</tr>
+		<tr>
+			<td>Celda 3</td>
+			<td>Celda 4</td>
+			<td>Celda 5</td>
+		</tr>
+	</table>
+
+	<h2>16</h2>
+	<h3>Sin rowspan</h3>
+	<table>
+		<tr>
+			<td style="background: #fff">Celda 1</td>
+			<td style="background: #F7B937">Celda 2</td>
+			<td>Celda 3</td>
+		</tr>
+		<tr>
+			<td>Celda 4</td>
+			<td>Celda 5</td>
+			<td>Celda 6</td>
+		</tr>
+	</table>
+
+	<h2>17</h2>
+	<h3>Con rowspan</h3>
+	<table>
+		<tr>
+			<td style="background: #fff" rowspan="2">Celda 1</td>
+			<td style="background: #F7B937">Celda 2</td>
+			<td>Celda 3</td>
+		</tr>
+		<tr>
+			<td>Celda 4</td>
+			<td>Celda 5</td>
+			<td>Celda 6</td>
+		</tr>
+	</table>
+
+	<h2>18</h2>
+	<h3>Con rowspan y colspan</h3>
+	<table>
+		<tr>
+			<td style="background: #fff" rowspan="3">Celda 1</td>
+			<td style="background: #F7B937">Celda 2</td>
+			<td colspan="2">Celda 3</td>
+		</tr>
+		<tr>
+			<td>Celda 4</td>
+			<td>Celda 5</td>
+			<td>Celda 6</td>
+		</tr>
+		<tr>
+			<td>Celda 7</td>
+			<td>Celda 8</td>
+			<td>Celda 9</td>
+		</tr>
+	</table>
+
+</body>
+</html>
